@@ -1,0 +1,62 @@
+﻿@model SpaceTravelVoucher.Main.Models.VUsers
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit account</h1>
+<hr />
+
+
+<form method="post" asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-floating mb-3">
+                <input asp-for="FirstName" class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                <label asp-for="FirstName">First Name</label>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-floating mb-3">
+                <input asp-for="LastName" class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                <label asp-for="LastName">Last Name</label>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-floating mb-3">
+                <select asp-for="Name" class="form-control" asp-items="Html.GetEnumSelectList<RoleEnum>()">
+                </select>
+                <label asp-for="Name"></label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-6">
+            <div class="form-floating mb-3">
+                <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="Email">Email</label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-6">
+            <div class="form-floating mb-3">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+</form>
+
+<div>
+    <a asp-action="Index" asp-controller="Admin">Back to List</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

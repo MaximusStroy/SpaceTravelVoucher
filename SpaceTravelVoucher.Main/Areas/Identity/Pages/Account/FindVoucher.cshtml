@@ -1,0 +1,36 @@
+﻿@page
+@model FindVoucherModel
+
+@{
+    ViewData["Title"] = "Find Voucher";
+    Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-10">
+        <section>
+            <form id="account" method="post">
+                <h2>Find voucher</h2>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.NumberVoucher" class="form-control" autocomplete="username" aria-required="true" placeholder="" />
+                    <label asp-for="Input.NumberVoucher" class="form-label">Number voucher</label>
+                    <span asp-validation-for="Input.NumberVoucher" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.CodeAuth" class="form-control" autocomplete="current-password" aria-required="true" placeholder="" />
+                    <label asp-for="Input.CodeAuth" class="form-label">Code auth</label>
+                    <span asp-validation-for="Input.CodeAuth" class="text-danger"></span>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Find</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
