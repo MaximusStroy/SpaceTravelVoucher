@@ -99,6 +99,7 @@ namespace SpaceTravelVoucher.Main.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
+                return RedirectToAction("DetailsVoucher", "Manager", new {number = Input.NumberVoucher, codeAuth = Input.CodeAuth});
             }
 
             // If we got this far, something failed, redisplay form

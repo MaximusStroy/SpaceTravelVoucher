@@ -4,24 +4,20 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>443e746c-8fa0-4f20-8c70-c52a56225732</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-    <PackageReference Include="System.ServiceModel.Duplex" Version="4.8.*" />
-    <PackageReference Include="System.ServiceModel.Federation" Version="4.8.*" />
-    <PackageReference Include="System.ServiceModel.Http" Version="4.8.*" />
-    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.8.*" />
-    <PackageReference Include="System.ServiceModel.Security" Version="4.8.*" />
+    <PackageReference Include="Swashbuckle.Core" Version="5.6.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SpaceTravelVoucher.DataSpaceTravel\SpaceTravelVoucher.DataSpaceTravel.csproj" />
+    <ProjectReference Include="..\SpaceTravelVoucher.DatabaseSpaceTravel\SpaceTravelVoucher.DatabaseSpaceTravel.csproj" />
+    <ProjectReference Include="..\SpaceTravelVoucher.DataGisEisEp\SpaceTravelVoucher.DataGisEisEp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Repository\" />
   </ItemGroup>
 
 </Project>

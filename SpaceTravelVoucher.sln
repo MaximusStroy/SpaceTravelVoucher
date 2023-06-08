@@ -3,18 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceTravelVoucher.API", "SpaceTravelVoucher.API\SpaceTravelVoucher.API.csproj", "{E2CB1997-6B33-4086-B940-2F2FD6255AB9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceTravelVoucher.DataSpaceTravel", "SpaceTravelVoucher.DataSpaceTravel\SpaceTravelVoucher.DataSpaceTravel.csproj", "{35FF050B-D51E-4A9F-86E4-2480394CD503}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceTravelVoucher.DataGisEisEp", "SpaceTravelVoucher.DataGisEisEp\SpaceTravelVoucher.DataGisEisEp.csproj", "{6AD2AE1B-57AA-45D5-9534-5345E2BE849D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceTravelVoucher.Main", "SpaceTravelVoucher.Main\SpaceTravelVoucher.Main.csproj", "{037ADCB8-2CEA-412F-A367-D5D11F59D026}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1E48D2F6-C711-44AE-86AD-F3740DB1C300} = {1E48D2F6-C711-44AE-86AD-F3740DB1C300}
+		{315EC3C3-671A-472A-B617-5E3A1377BD74} = {315EC3C3-671A-472A-B617-5E3A1377BD74}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A007DBB1-3FC8-40F4-8A3D-2C3028FB941D}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceTravelVoucher.DatabaseSpaceTravel", "SpaceTravelVoucher.DatabaseSpaceTravel\SpaceTravelVoucher.DatabaseSpaceTravel.csproj", "{315EC3C3-671A-472A-B617-5E3A1377BD74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceTravelVoucher.API", "SpaceTravelVoucher.API\SpaceTravelVoucher.API.csproj", "{1E48D2F6-C711-44AE-86AD-F3740DB1C300}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,14 +26,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E2CB1997-6B33-4086-B940-2F2FD6255AB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E2CB1997-6B33-4086-B940-2F2FD6255AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E2CB1997-6B33-4086-B940-2F2FD6255AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E2CB1997-6B33-4086-B940-2F2FD6255AB9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35FF050B-D51E-4A9F-86E4-2480394CD503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35FF050B-D51E-4A9F-86E4-2480394CD503}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35FF050B-D51E-4A9F-86E4-2480394CD503}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35FF050B-D51E-4A9F-86E4-2480394CD503}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6AD2AE1B-57AA-45D5-9534-5345E2BE849D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6AD2AE1B-57AA-45D5-9534-5345E2BE849D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AD2AE1B-57AA-45D5-9534-5345E2BE849D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -38,6 +34,14 @@ Global
 		{037ADCB8-2CEA-412F-A367-D5D11F59D026}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{037ADCB8-2CEA-412F-A367-D5D11F59D026}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{037ADCB8-2CEA-412F-A367-D5D11F59D026}.Release|Any CPU.Build.0 = Release|Any CPU
+		{315EC3C3-671A-472A-B617-5E3A1377BD74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{315EC3C3-671A-472A-B617-5E3A1377BD74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{315EC3C3-671A-472A-B617-5E3A1377BD74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{315EC3C3-671A-472A-B617-5E3A1377BD74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E48D2F6-C711-44AE-86AD-F3740DB1C300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E48D2F6-C711-44AE-86AD-F3740DB1C300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E48D2F6-C711-44AE-86AD-F3740DB1C300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E48D2F6-C711-44AE-86AD-F3740DB1C300}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

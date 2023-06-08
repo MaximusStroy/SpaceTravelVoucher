@@ -1,0 +1,402 @@
+﻿@using SpaceTravelVoucher.Api.ViewModels
+@using SpaceTravelVoucher.DataGisEisEp.EPMessageExchangeWS.Models
+@using SpaceTravelVoucher.Main.ViewModels
+@model CreateOrEditVoucherViewModel
+@inject LanguageService lang
+
+@{
+
+}
+
+<div>
+    <a asp-action="ListVoucher" asp-controller="Manager">@lang.GetKey("back_list")</a>
+</div>
+<hr />
+<h4>Номер путевки: @Model.CreateVoucherRequest.Voucher.number</h4>
+<h4>Код путевки: @Model.CodeAuth</h4>
+<form method="post" en>
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                    Общая информация
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" asp-for="CreateVoucherRequest.Voucher.TourAgent.inn" />
+                                <label asp-for="CreateVoucherRequest.Voucher.TourAgent.inn">Турагент*</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" asp-for="CreateVoucherRequest.Voucher.status"  />
+                                <label asp-for="CreateVoucherRequest.Voucher.status">Статус*</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" asp-for="CreateVoucherRequest.Voucher.VoucherType.code"/>
+                                <label asp-for="CreateVoucherRequest.Voucher.VoucherType.code">Тип поездки*</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name"  asp-for="CreateVoucherRequest.Voucher.LeavingCountry.code" />
+                                <label asp-for="CreateVoucherRequest.Voucher.LeavingCountry.code">Страна отправления*</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" asp-for="CreateVoucherRequest.Voucher.DestinationCountry.code"/>
+                                <label asp-for="CreateVoucherRequest.Voucher.DestinationCountry.code">Страна въезда*</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" asp-for="CreateVoucherRequest.Voucher.LeavingCity.code" />
+                                <label asp-for="CreateVoucherRequest.Voucher.LeavingCity.code">Населённый пункт отправления*</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" asp-for="CreateVoucherRequest.Voucher.DestinationCity.code"/>
+                                <label asp-for="CreateVoucherRequest.Voucher.DestinationCity.code">Населённый пункт прибытия*</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" asp-for="CreateVoucherRequest.Voucher.tripStartDate"/>
+                                <label asp-for="CreateVoucherRequest.Voucher.tripStartDate">Дата начала путешествия*</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" asp-for="CreateVoucherRequest.Voucher.tripEndDate"/>
+                                <label asp-for="CreateVoucherRequest.Voucher.tripEndDate">Дата окончания путешествия*</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" asp-for="CreateVoucherRequest.Voucher.Partner.code"/>
+                                <label asp-for="CreateVoucherRequest.Voucher.Partner.code">Принимающая сторона:</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" asp-for="CreateVoucherRequest.Voucher.comment" rows="3"></textarea>
+                                <label asp-for="CreateVoucherRequest.Voucher.comment">Комментарий</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-100 btn btn-lg btn-primary" asp-action="SaveInfo" asp-controller="Manager">Сохранить</button>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                    Заказчик
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                <div class="accordion-body">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Физическое лицо</button>
+                            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Юридическое лицо</button>
+                            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Индивидуальный предприниматель</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        @*Физическое лицо*@
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>Имя*</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                                        <label>Гражданство*</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>Фамилия*</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                                        <label>Тип документа, удостоверяющего личность:*</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>Отчество</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                                        <label>Серия и номер документа (слитно, без пробелов)*</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>Адрес регистрации:*</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>Телефон:*</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                                        <label>E-mail:</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*Юридическое лицо*@
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>Страна регистрации:*</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                                        <label>Фамилия руководителя организации:*</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>ИНН/ID:*</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                                        <label>Имя руководителя организации:*</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>Наименование юридического лица:*</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                                        <label>Отчество руководителя организации:</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>Телефон:*</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                                        <label>E-mail:*</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>Адрес регистрации:*</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*Индивидуальный предприниматель*@
+                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>Имя*</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                                        <label>Гражданство*</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>Фамилия*</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                                        <label>Тип документа, удостоверяющего личность:*</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>Отчество</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                                        <label>Серия и номер документа (слитно, без пробелов)*</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>Адрес регистрации:*</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>Телефон:*</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                                        <label>E-mail:</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                        <label>ИНН:*</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                    Туристы
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                <div class="accordion-body">
+
+                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+            </div>
+        </div>*@
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                    Договор
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+                <div class="accordion-body">
+                    <h3>
+                        Договор
+                    </h3>
+                    <hr />
+                    <div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="CreateVoucherRequest.Voucher.Order.contractNumber" class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                                    <label asp-for="CreateVoucherRequest.Voucher.Order.contractNumber">Номер договора с заказчиком</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="CreateVoucherRequest.Voucher.Order.contractDate" class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                                    <label asp-for="CreateVoucherRequest.Voucher.Order.contractDate">Дата заключения договора</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="CreateVoucherRequest.Voucher.Order.cost" class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                                    <label asp-for="CreateVoucherRequest.Voucher.Order.cost">Стоимость путевки</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-100 btn btn-lg btn-primary" asp-action="SaveContract" asp-controller="Manager">Сохранить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}s

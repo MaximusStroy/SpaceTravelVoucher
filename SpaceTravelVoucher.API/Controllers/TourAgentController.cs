@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SpaceTravelVoucher.DataSpaceTravel.Models;
-using SpaceTravelVoucher.DataSpaceTravel.Repository;
+using Microsoft.EntityFrameworkCore;
+using SpaceTravelVoucher.API.Models;
+using SpaceTravelVoucher.DataGisEisEp.EPMessageExchangeWS.Models;
+using SpaceTravelVoucher.DataGisEisEp.EPMessageExchangeWS.Repository.TourAgent;
 
 namespace SpaceTravelVoucher.API.Controllers
 {
@@ -9,39 +11,120 @@ namespace SpaceTravelVoucher.API.Controllers
     [ApiController]
     public class TourAgentController : ControllerBase
     {
-        private DataRepository<TourAgency, string> _repository;
+        private readonly TESTSPACEContext _db;
 
-        public TourAgentController()
+        public TourAgentController(TESTSPACEContext db)
         {
-            _repository = new DataRepository<TourAgency, string>();
+            _db = db;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> Get()
         {
-            return Ok(await _repository.GetMany());
+            try
+            {
+                var list = await _db.TourAgency.ToListAsync();
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                await _db.Logger.AddAsync(new Logger()
+                {
+                    Date = DateTime.Now,
+                    Level = "Error",
+                    Message = ex.Message,
+                    Point = "TourAgentController / Get"
+                });
+                await _db.SaveChangesAsync();
+                return BadRequest();
+            }
         }
 
-        [HttpGet("{code}")]
-        public async Task<IActionResult> GetOne(string code)
+        [HttpGet("code")]
+        public async Task<IActionResult> Get(int code)
         {
-            var obj = await _repository.GetOne(code);
-            if (obj == null) return BadRequest();
-            return Ok(obj);
+            try
+            {
+                var model = await _db.TourAgency.FirstOrDefaultAsync(x => x.Code == code);
+                return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                await _db.Logger.AddAsync(new Logger()
+                {
+                    Date = DateTime.Now,
+                    Level = "Error",
+                    Message = ex.Message,
+                    Point = "TourAgentController / Get(int code)"
+                });
+                await _db.SaveChangesAsync();
+                return BadRequest();
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> Insert(TourAgency model)
         {
-            return Ok(await _repository.Insert(model));
+            try
+            {
+                var setTourAgent = new SetTourAgent();
+                setTourAgent.SetPartnerResponse(new TourAgent()
+                {
+                    Active = model.IsActive,
+                    Address = model.Address,
+                    Email = model.Mail,
+                    Inn = model.Inn,
+                    Name = model.NameRu,
+                    PhoneNumber = model.NumberPhone
+                });
+                await _db.TourAgency.AddAsync(model);
+                await _db.SaveChangesAsync();
+                return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                await _db.Logger.AddAsync(new Logger()
+                {
+                    Date = DateTime.Now,
+                    Level = "Error",
+                    Message = ex.Message,
+                    Point = "TourAgentController / Insert"
+                });
+                await _db.SaveChangesAsync();
+                return BadRequest();
+            }
         }
 
-        [HttpDelete("{code}")]
-        public async Task<IActionResult> Delete(string code)
+        [HttpPost]
+        public async Task<IActionResult> Update(TourAgency model)
         {
-            var obj = await _repository.GetOne(code);
-            if (obj == null) return BadRequest();
-            return Ok(await _repository.Delete(obj));
+            try
+            {
+                var setTourAgent = new SetTourAgent();
+                setTourAgent.SetPartnerResponse(new TourAgent()
+                {
+                    Active = model.IsActive,
+                    Address = model.Address,
+                    Email = model.Mail,
+                    Inn = model.Inn,
+                    Name = model.NameRu,
+                    PhoneNumber = model.NumberPhone
+                });
+                _db.TourAgency.Update(model);
+                await _db.SaveChangesAsync();
+                return Ok(model);
+            } catch (Exception ex)
+            {
+                await _db.Logger.AddAsync(new Logger()
+                {
+                    Date = DateTime.Now,
+                    Level = "Error",
+                    Message = ex.Message,
+                    Point = "TourAgentController / Update"
+                });
+                await _db.SaveChangesAsync();
+                return BadRequest();
+            }
         }
     }
 }

@@ -25,6 +25,7 @@ namespace SpaceTravelVoucher.DataGisEisEp.EPMessageExchangeWS.Models
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "urn://artefacts-russiatourism-ru/services/message-exchange/types/CreateVoucher", IsNullable = false)]
     public partial class CreateVoucherResponse
     {
+        public string BodyRequest { get; set; }
 
         private string voucherNumberField;
 

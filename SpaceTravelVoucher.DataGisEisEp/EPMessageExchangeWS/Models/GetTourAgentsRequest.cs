@@ -25,6 +25,11 @@ namespace SpaceTravelVoucher.DataGisEisEp.EPMessageExchangeWS.Models
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "urn://artefacts-russiatourism-ru/services/message-exchange/types/GetTourAgents", IsNullable = false)]
     public partial class GetTourAgentsRequest
     {
+        public string BodyRequest { get; set; }
+        public string RequestId { get; set; }
+        public string Status { get; set; }
+        public string Error { get; set; } = null;
+        public string PartnersData { get; set; }
     }
 
 }

@@ -2,6 +2,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@inject LanguageService lang
+
 <div class="row justify-content-center">
     <div class="col-5 mt-5">
         <div class="card login-logout-card">
@@ -9,7 +11,7 @@
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
                         <a class="nav-link" href="/Identity/Account/Login">
-                            Log In
+                            @lang.GetKey("login");
                         </a>
                     </li>
                     @*<li class="nav-item">
@@ -19,7 +21,7 @@
                     </li>*@
                     <li class="nav-item">
                         <a class="nav-link" href="/Identity/Account/FindVoucher">
-                            Find voucher
+                            @lang.GetKey("find_voucher");
                         </a>
                     </li>
                 </ul>

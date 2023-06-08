@@ -2,6 +2,7 @@
 
 @inject SignInManager<ApplicationUser> SigInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject LanguageService lang
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,41 +28,48 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex">
                     <ul class="navbar-nav text-center">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                               @lang.GetKey("language") 
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en">English</a></li>
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="ru">Русский</a></li>
 
+                            </ul>
+                        </li>
                         @{
                             if (User.IsInRole("Admin"))
                             {
                                 /*<li class="nav-item mr-3 ml-3">
-                                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
                                 </li>*/
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Tables
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" asp-controller="Admin" asp-action="Index">Users</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
-                                        
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
-                                </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            @lang.GetKey("tables")
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" asp-controller="Admin" asp-action="Index">@lang.GetKey("users")</a></li>
+                                            <li><a class="dropdown-item" asp-controller="Admin" asp-action="Index">@lang.GetKey("protocols")</a></li>
+
+                                        </ul>
+                                    </li>
                             }
-                            if (User.IsInRole("Manager"))
+                            if (User.IsInRole("Manager") || User.IsInRole("Admin"))
                             {
                                 /*<li class="nav-item mr-3 ml-3">
-                                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
                                 </li>*/
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Реестры
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" asp-controller="" asp-action="">Тур. агентсва</a></li>
-                                        <li><a class="dropdown-item" asp-controller="" asp-action="">Принимающие стороны</a></li>   
-                                        <li><a class="dropdown-item" asp-controller="" asp-action="">Путевки</a></li> 
-                                    </ul>
-                                </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            @lang.GetKey("registries")
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" asp-controller="" asp-action="">@lang.GetKey("tour_agent")</a></li>
+                                            <li><a class="dropdown-item" asp-controller="" asp-action="">@lang.GetKey("partners")</a></li>
+                                            <li><a class="dropdown-item" asp-controller="Manager" asp-action="ListVoucher">@lang.GetKey("vouchers")</a></li>
+                                        </ul>
+                                    </li>
                             }
                         }
                     </ul>

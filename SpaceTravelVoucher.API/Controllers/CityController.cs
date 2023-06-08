@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SpaceTravelVoucher.DataSpaceTravel.Models;
-using SpaceTravelVoucher.DataSpaceTravel.Repository;
+using Microsoft.EntityFrameworkCore;
+using SpaceTravelVoucher.API.Models;
 
 namespace SpaceTravelVoucher.API.Controllers
 {
@@ -9,39 +9,55 @@ namespace SpaceTravelVoucher.API.Controllers
     [ApiController]
     public class CityController : ControllerBase
     {
-        private DataRepository<City, string> _repository;
+        private readonly TESTSPACEContext _db;
 
-        public CityController()
+        public CityController(TESTSPACEContext db)
         {
-            _repository = new DataRepository<City, string>();
+            _db = db;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> Get()
         {
-            return Ok(await _repository.GetMany());
+            try
+            {
+                var list = await _db.City.ToListAsync();
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                await _db.Logger.AddAsync(new Logger()
+                {
+                    Date = DateTime.Now,
+                    Level = "Error",
+                    Message = ex.Message,
+                    Point = "CityController / Get"
+                });
+                await _db.SaveChangesAsync();
+                return BadRequest();
+            }
         }
 
-        [HttpGet("{code}")]
-        public async Task<IActionResult> GetOne(string code)
+        [HttpGet("codeCountry")]
+        public async Task<IActionResult> Get(string codeCountry)
         {
-            var obj = await _repository.GetOne(code);
-            if (obj == null) return BadRequest();
-            return Ok(obj);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Insert(City model)
-        {
-            return Ok(await _repository.Insert(model));
-        }
-
-        [HttpDelete("{code}")]
-        public async Task<IActionResult> Delete(string code)
-        {
-            var obj = await _repository.GetOne(code);
-            if (obj == null) return BadRequest();
-            return Ok(await _repository.Delete(obj));
+            try
+            {
+                var list = await _db.City.Where(x => x.CodeCountry == codeCountry).ToListAsync();
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                await _db.Logger.AddAsync(new Logger()
+                {
+                    Date = DateTime.Now,
+                    Level = "Error",
+                    Message = ex.Message,
+                    Point = "CityController / Get(string codeCountry)"
+                });
+                await _db.SaveChangesAsync();
+                return BadRequest();
+            }
         }
     }
 }

@@ -1,0 +1,145 @@
+﻿{
+   "CodeGenerationMode": 3,
+   "ContextClassName": "TESTSPACEContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "SpaceTravelVoucher.DatabaseSpaceTravel",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[Airport]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetRoleClaims]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUserClaims]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUserLogins]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUserRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUsers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUserTokens]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AviaCarrier]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[City]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Client]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Country]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[IdentityDocumentType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Logger]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[RailCarrier]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[RailwayStation]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ReceivingParty]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[RegionRf]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[StatusAviaCarrier]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[StatusRailCarrier]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[StatusVoucher]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TourAgency]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TourismServiceType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Voucher]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VoucherType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VoucherXml]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[v_Users]",
+         "ObjectType": 3
+      }
+   ],
+   "UiHint": "khame\\sqlexpress.TESTSPACE.dbo",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false,
+   "UseT4": false
+}

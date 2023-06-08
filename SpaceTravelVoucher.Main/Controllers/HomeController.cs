@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using SpaceTravelVoucher.Main.Models;
 using System.Diagnostics;
 
 namespace SpaceTravelVoucher.Main.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class HomeController : Controller
     {
 
@@ -19,12 +20,24 @@ namespace SpaceTravelVoucher.Main.Controllers
             this._userManager = userManager;
         }
 
+        public IActionResult ChangeLanguage(string culture)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions() { Expires = DateTimeOffset.UtcNow.AddYears(1)}
+                );
+
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+
+        [Authorize(Roles = "Admin, Manager")]
         public IActionResult Index()
         {
             ViewData["UserID"] = _userManager.GetUserId(this.User);
             return View();
         }
 
+        [Authorize(Roles = "Admin, Manager")]
         public IActionResult Privacy()
         {
             return View();

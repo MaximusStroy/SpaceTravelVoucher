@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<SpaceTravelVoucher.Main.Models.VUsers>
+@inject LanguageService lang
 
 @{
     ViewData["Title"] = "Index";
@@ -9,7 +10,7 @@
 
 <p>
     <a class="nav-link" href="/Identity/Account/Register">
-        Create new account
+        @lang.GetKey("create_account")
     </a>
 </p>
 <table class="table">
@@ -59,9 +60,9 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@lang.GetKey("edit")</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@lang.GetKey("details")</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@lang.GetKey("delete")</a>
                 </td>
             </tr>
         }

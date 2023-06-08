@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SpaceTravelVoucher.API.Authentication;
-using SpaceTravelVoucher.DataSpaceTravel.Models;
+using SpaceTravelVoucher.API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,9 +11,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<TESTSPACEContext>(o =>
-{
-});
+var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=TESTSPACE;Integrated Security=True;TrustServerCertificate=True;";
+
+builder.Services.AddDbContext<TESTSPACEContext>(options =>
+    options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 
@@ -25,9 +26,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseMiddleware<ApiKeyAuthMiddleware>();
-
 app.UseAuthorization();
 
 app.MapControllers();
